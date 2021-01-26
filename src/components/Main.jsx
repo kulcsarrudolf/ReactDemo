@@ -7,8 +7,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    marginTop: "3.5rem",
+    marginTop: "4.5rem",
   },
 }));
 
@@ -17,22 +16,15 @@ const Main = () => {
 
   return (
     <div className={classes.root}>
-      <Grid container>
-        <Suspense
-          fallback={
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center"
-            >
-              <LinearProgress />
-            </Grid>
-          }
-        >
-          <Routing />
-        </Suspense>
-      </Grid>
+      <Suspense
+        fallback={
+          <Grid container direction="row" justify="center" alignItems="center">
+            <LinearProgress />
+          </Grid>
+        }
+      >
+        <Routing />
+      </Suspense>
     </div>
   );
 };

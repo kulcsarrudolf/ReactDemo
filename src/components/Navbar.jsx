@@ -44,7 +44,7 @@ export default function MenuAppBar() {
     <AppBar position="fixed">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-          Photo Gallery
+          React Demo
         </Typography>
         <Link to="/home" className={classes.link}>
           <Button className={classes.menuItem} color="inherit">
