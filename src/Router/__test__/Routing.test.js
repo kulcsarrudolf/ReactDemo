@@ -25,10 +25,7 @@ test("test", () => {
 });
 
 test("test2", () => {
-  const { getByText, getAllByText } = render(
-    <TestRouter path="/random-image" />
-  );
+  const { getAllByText } = render(<TestRouter path="/random-note" />);
 
-  //   getByText(/Random Image/i);
-  getAllByText(/Random Image/i);
+  getAllByText(/Random Note/i);
 });

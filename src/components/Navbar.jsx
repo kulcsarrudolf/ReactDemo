@@ -37,8 +37,11 @@ const useStyles = makeStyles((theme) => ({
 export default function MenuAppBar() {
   const classes = useStyles();
 
-  const [isLogged, setIsLogged] = React.useState(true);
-  const [isPremiumUser, setIsPremiumUser] = React.useState(true);
+  // const [isLogged, setIsLogged] = React.useState(true);
+  // const [isPremiumUser, setIsPremiumUser] = React.useState(true);
+
+  const isLogged = true;
+  const isPremiumUser = true;
 
   return (
     <AppBar position="fixed">
@@ -51,18 +54,27 @@ export default function MenuAppBar() {
             Home
           </Button>
         </Link>
-        <Link to="/random-image" className={classes.link}>
+
+        <Link to="/notes" className={classes.link}>
           <Button className={classes.menuItem} color="inherit">
-            Random Image
+            Notes
           </Button>
         </Link>
+
+        <Link to="/create-notes" className={classes.link}>
+          <Button className={classes.menuItem} color="inherit">
+            Create Notes
+          </Button>
+        </Link>
+
         {isPremiumUser && (
-          <Link to="/gallery" className={classes.link}>
+          <Link to="/random-note" className={classes.link}>
             <Button className={classes.menuItem} color="inherit">
-              Gallery
+              Random Note
             </Button>
           </Link>
         )}
+
         {isLogged && (
           <div>
             <IconButton

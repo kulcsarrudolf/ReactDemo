@@ -2,8 +2,8 @@ import { Route, Switch } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 
 import Home from "../components/Home";
-import RandomImage from "../components/RandomImage";
-import Gallery from "../components/Gallery";
+import RandomNote from "../components/RandomNote";
+import Notes from "../components/Notes";
 import PageNotFound from "../Router/PageNotFound";
 
 const Routing = () => {
@@ -11,13 +11,8 @@ const Routing = () => {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/home" component={Home} />
-      <Route exact path="/random-image" component={RandomImage} />
-      <ProtectedRoute
-        exact
-        path="/gallery"
-        enabled={true}
-        component={Gallery}
-      />
+      <Route exact path="/random-note" component={RandomNote} />
+      <ProtectedRoute exact path="/notes" enabled={true} component={Notes} />
       <Route path="*" component={PageNotFound} />
     </Switch>
   );
