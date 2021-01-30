@@ -4,18 +4,25 @@ import ProtectedRoute from "./ProtectedRoute";
 import Home from "../components/Home";
 import RandomNote from "../components/RandomNote";
 import Notes from "../components/Notes";
-import PageNotFound from "../Router/PageNotFound";
+import PageNotFound from "./PageNotFound";
+import User from "../components/User";
 
 const Routing = () => {
-  return (
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/home" component={Home} />
-      <Route exact path="/random-note" component={RandomNote} />
-      <ProtectedRoute exact path="/notes" enabled={true} component={Notes} />
-      <Route path="*" component={PageNotFound} />
-    </Switch>
-  );
+    return (
+        <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/home' component={Home} />
+            <Route exact path='/user' component={User} />
+            <Route exact path='/random-note' component={RandomNote} />
+            <ProtectedRoute
+                exact
+                path='/notes'
+                enabled={true}
+                component={Notes}
+            />
+            <Route path='*' component={PageNotFound} />
+        </Switch>
+    );
 };
 
 export default Routing;

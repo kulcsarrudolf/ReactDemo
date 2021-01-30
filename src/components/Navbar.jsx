@@ -10,87 +10,84 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    flexGrow: 1,
-  },
-
-  menuItem: {
-    display: "flex",
-    [theme.breakpoints.down("xs")]: {
-      display: "none",
+    title: {
+        flexGrow: 1,
     },
-  },
 
-  menuButton: {
-    display: "none",
-    [theme.breakpoints.down("xs")]: {
-      display: "flex",
+    menuItem: {
+        display: "flex",
+        [theme.breakpoints.down("xs")]: {
+            display: "none",
+        },
     },
-  },
 
-  link: {
-    textDecoration: "none",
-    color: "#ffffff",
-  },
+    menuButton: {
+        display: "none",
+        [theme.breakpoints.down("xs")]: {
+            display: "flex",
+        },
+    },
+
+    link: {
+        textDecoration: "none",
+        color: "#ffffff",
+    },
 }));
 
 export default function MenuAppBar() {
-  const classes = useStyles();
+    const classes = useStyles();
 
-  // const [isLogged, setIsLogged] = React.useState(true);
-  // const [isPremiumUser, setIsPremiumUser] = React.useState(true);
+    // const [isLogged, setIsLogged] = React.useState(true);
+    // const [isPremiumUser, setIsPremiumUser] = React.useState(true);
 
-  const isLogged = true;
-  const isPremiumUser = true;
+    const isLogged = true;
+    const isPremiumUser = true;
 
-  return (
-    <AppBar position="fixed">
-      <Toolbar>
-        <Typography variant="h6" className={classes.title}>
-          React Demo
-        </Typography>
-        <Link to="/home" className={classes.link}>
-          <Button className={classes.menuItem} color="inherit">
-            Home
-          </Button>
-        </Link>
+    return (
+        <AppBar position='fixed'>
+            <Toolbar>
+                <Typography variant='h6' className={classes.title}>
+                    React Demo
+                </Typography>
+                <Link to='/home' className={classes.link}>
+                    <Button className={classes.menuItem} color='inherit'>
+                        Home
+                    </Button>
+                </Link>
 
-        <Link to="/notes" className={classes.link}>
-          <Button className={classes.menuItem} color="inherit">
-            Notes
-          </Button>
-        </Link>
+                <Link to='/notes' className={classes.link}>
+                    <Button className={classes.menuItem} color='inherit'>
+                        Notes
+                    </Button>
+                </Link>
 
-        <Link to="/create-notes" className={classes.link}>
-          <Button className={classes.menuItem} color="inherit">
-            Create Notes
-          </Button>
-        </Link>
+                <Link to='/create-notes' className={classes.link}>
+                    <Button className={classes.menuItem} color='inherit'>
+                        Create Notes
+                    </Button>
+                </Link>
 
-        {isPremiumUser && (
-          <Link to="/random-note" className={classes.link}>
-            <Button className={classes.menuItem} color="inherit">
-              Random Note
-            </Button>
-          </Link>
-        )}
+                {isPremiumUser && (
+                    <Link to='/random-note' className={classes.link}>
+                        <Button className={classes.menuItem} color='inherit'>
+                            Random Note
+                        </Button>
+                    </Link>
+                )}
 
-        {isLogged && (
-          <div>
-            <IconButton
-              onClick={() => {
-                console.log("test");
-              }}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-        )}
-        <IconButton className={classes.menuButton} color="inherit">
-          <MenuIcon />
-        </IconButton>
-      </Toolbar>
-    </AppBar>
-  );
+                {isLogged && (
+                    <div>
+                        <Link to='/user' className={classes.link}>
+                            <IconButton color='inherit'>
+                                <AccountCircle />
+                            </IconButton>
+                        </Link>
+                    </div>
+                )}
+                <IconButton className={classes.menuButton} color='inherit'>
+                    <MenuIcon />
+                </IconButton>
+            </Toolbar>
+        </AppBar>
+    );
 }
