@@ -16,7 +16,7 @@ const Notes = () => {
         };
 
         fetchNotes();
-    }, []);
+    }, [user]);
 
     if (!user) {
         return (
