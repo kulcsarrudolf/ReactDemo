@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+import { useDispatch } from "react-redux";
+import { setUser } from "./../redux/actions/userAction";
+
 import { v4 as uuidv4 } from "uuid";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -26,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const User = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState("");
@@ -46,7 +50,7 @@ const User = () => {
     };
 
     const handleSetUserButtonClick = () => {
-        console.log(selectedUser);
+        dispatch(setUser(selectedUser));
     };
 
     if (users.length > 0) {
