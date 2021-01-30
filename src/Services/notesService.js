@@ -10,3 +10,13 @@ export const getRandomNote = () => {
 
     return notes[random];
 };
+
+export const getNotesByUserName = (userName) => {
+    if (userName === null) {
+        return [];
+    }
+
+    const userNotes = getNotes().filter((note) => note.author === userName);
+
+    return userNotes;
+};

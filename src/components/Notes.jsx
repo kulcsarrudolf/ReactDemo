@@ -1,18 +1,30 @@
 import { Fragment, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Typography, Paper } from "@material-ui/core";
-import { getNotes } from "./../Services/notesService";
+import Alert from "@material-ui/lab/Alert";
+
+import { getNotesByUserName } from "./../Services/notesService";
 
 const Notes = () => {
     const [notes, setNotes] = useState([]);
+    const user = useSelector((state) => state.user);
 
     useEffect(() => {
         const fetchNotes = async () => {
-            const allNotes = await getNotes();
+            const allNotes = await getNotesByUserName(user);
             setNotes(allNotes);
         };
 
         fetchNotes();
     }, []);
+
+    if (!user) {
+        return (
+            <>
+                <Alert severity='warning'>User is not selected.</Alert>
+            </>
+        );
+    }
 
     return (
         <>
