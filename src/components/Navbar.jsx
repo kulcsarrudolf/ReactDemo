@@ -37,12 +37,6 @@ const useStyles = makeStyles((theme) => ({
 export default function MenuAppBar() {
     const classes = useStyles();
 
-    // const [isLogged, setIsLogged] = React.useState(true);
-    // const [isPremiumUser, setIsPremiumUser] = React.useState(true);
-
-    const isLogged = true;
-    const isPremiumUser = true;
-
     return (
         <AppBar position='fixed'>
             <Toolbar>
@@ -67,23 +61,14 @@ export default function MenuAppBar() {
                     </Button>
                 </Link>
 
-                {isPremiumUser && (
-                    <Link to='/random-note' className={classes.link}>
-                        <Button className={classes.menuItem} color='inherit'>
-                            Random Note
-                        </Button>
+                <div>
+                    <Link to='/user' className={classes.link}>
+                        <IconButton color='inherit'>
+                            <AccountCircle />
+                        </IconButton>
                     </Link>
-                )}
+                </div>
 
-                {isLogged && (
-                    <div>
-                        <Link to='/user' className={classes.link}>
-                            <IconButton color='inherit'>
-                                <AccountCircle />
-                            </IconButton>
-                        </Link>
-                    </div>
-                )}
                 <IconButton className={classes.menuButton} color='inherit'>
                     <MenuIcon />
                 </IconButton>
