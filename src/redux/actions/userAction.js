@@ -1,8 +1,14 @@
-export const setUser = (user) => async (dispatch) => {
+export const setUser = (user) => (dispatch) => {
     dispatch({
         type: "SET_USER",
         payload: {
             user: user,
         },
+    });
+};
+
+export const resetUser = () => (dispatch) => {
+    dispatch({
+        type: "RESET_USER",
     });
 };

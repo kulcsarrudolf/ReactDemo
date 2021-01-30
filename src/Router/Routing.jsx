@@ -5,7 +5,7 @@ import Home from "../components/Home";
 import RandomNote from "../components/RandomNote";
 import Notes from "../components/Notes";
 import PageNotFound from "./PageNotFound";
-import User from "../components/User";
+import User from "../components/User/User";
 
 const Routing = () => {
     return (

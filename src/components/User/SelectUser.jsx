@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { setUser } from "./../redux/actions/userAction";
+import { setUser } from "../../redux/actions/userAction";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -15,7 +15,7 @@ import {
     Grid,
 } from "@material-ui/core";
 
-import { getAllUsers } from "../Services/userService";
+import { getAllUsers } from "../../Services/userService";
 
 const useStyles = makeStyles((theme) => ({
     userSelector: {
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const User = () => {
+const SelectUser = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
@@ -66,7 +66,7 @@ const User = () => {
                         variant='outlined'
                         className={classes.userSelector}
                     >
-                        <InputLabel>User name</InputLabel>
+                        <InputLabel>Select a user</InputLabel>
                         <Select
                             value={selectedUser}
                             onChange={handleUserSelect}
@@ -99,4 +99,4 @@ const User = () => {
     return <>Loading...</>;
 };
 
-export default User;
+export default SelectUser;

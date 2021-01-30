@@ -1,16 +1,13 @@
-const initState = {
-    user: null,
-};
+const initState = null;
 
 const userReducer = (state = initState, action) => {
     switch (action.type) {
         case "SET_USER":
-            return {
-                ...state,
-                user: action.payload.user,
-            };
+            return action.payload.user;
+        case "RESET_USER":
+            return initState;
         default:
-            return { ...state };
+            return state;
     }
 };
 
