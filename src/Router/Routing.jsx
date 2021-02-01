@@ -2,7 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 
 import Home from "../components/Home";
-import Notes from "../components/Notes";
+import Notes from "../components/Notes/Notes";
 import PageNotFound from "./PageNotFound";
 import User from "../components/User/User";
 
