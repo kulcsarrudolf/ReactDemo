@@ -5,21 +5,19 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
-const CATEGORY_LIST = ["school", "work", "hobby", "other"];
-
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(3),
     },
 }));
 
-const NotesFilterBox = () => {
+const NotesFilterBox = ({ c }) => {
     const classes = useStyles();
 
     const [categories, setCategories] = useState(() => {
         const initState = [];
 
-        CATEGORY_LIST.forEach((category) => {
+        c.forEach((category) => {
             initState.push({
                 name: category,
                 value: false,
@@ -29,9 +27,7 @@ const NotesFilterBox = () => {
         return initState;
     });
 
-    const handleChange = (event) => {
-        // console.log(event.target.name);
-    };
+    const handleChange = (event) => {};
 
     return (
         <>

@@ -3,23 +3,22 @@ import { useSelector } from "react-redux";
 
 import { Typography, Paper } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import Checkbox from "@material-ui/core/Checkbox";
 
 import NotesFilterBox from "./NoteFilterBox";
 
-import { getNotesByUserName } from "../../Services/notesService";
+import { getNotesByUserName, getCategories } from "../../Services/notesService";
 
 const Notes = () => {
     const [notes, setNotes] = useState([]);
     const user = useSelector((state) => state.user);
-    const [category, setCategory] = useState("school");
+    const [category, setCategory] = useState(["work"]);
 
     useEffect(() => {
         const fetchNotes = async () => {
             const allNotes = await getNotesByUserName(user);
             if (category) {
-                const filteredNotes = allNotes.filter(
-                    (note) => note.category === category
+                const filteredNotes = allNotes.filter((note) =>
+                    note.category.includes(category)
                 );
 
                 setNotes(filteredNotes);
@@ -42,7 +41,7 @@ const Notes = () => {
     return (
         <>
             <>
-                <NotesFilterBox />
+                <NotesFilterBox c={getCategories()} setCategory={setCategory} />
             </>
 
             {notes.map((note) => {

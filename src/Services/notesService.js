@@ -20,3 +20,10 @@ export const getNotesByUserName = (userName) => {
 
     return userNotes;
 };
+
+export const getCategories = () => {
+    let categories = notes.map((data) => data.category);
+    categories = new Set(categories); // remove duplicates
+
+    return Array.from(categories);
+};
