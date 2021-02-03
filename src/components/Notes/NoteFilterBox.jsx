@@ -27,7 +27,19 @@ const NotesFilterBox = ({ c }) => {
         return initState;
     });
 
-    const handleChange = (event) => {};
+    const handleChange = (event) => {
+        const currentSwitchName = event.target.name;
+        const currentSwitchValue = event.target.checked;
+
+        const blabla = categories.filter(
+            (category) => category.name !== currentSwitchName
+        );
+
+        setCategories([
+            ...blabla,
+            { name: currentSwitchName, value: currentSwitchValue },
+        ]);
+    };
 
     return (
         <>
