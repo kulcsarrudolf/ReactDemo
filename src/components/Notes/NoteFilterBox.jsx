@@ -11,13 +11,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const NotesFilterBox = ({ c }) => {
+const NotesFilterBox = ({ categories, setCategories }) => {
     const classes = useStyles();
 
-    const [categories, setCategories] = useState(() => {
+    const [switches, setSwitches] = useState(() => {
         const initState = [];
 
-        c.forEach((category) => {
+        categories.forEach((category) => {
             initState.push({
                 name: category,
                 value: false,
@@ -31,11 +31,26 @@ const NotesFilterBox = ({ c }) => {
         const currentSwitchName = event.target.name;
         const currentSwitchValue = event.target.checked;
 
-        const blabla = categories.filter(
+        const blabla = switches.filter(
             (category) => category.name !== currentSwitchName
         );
 
-        setCategories([
+        const xyz = [
+            ...blabla,
+            { name: currentSwitchName, value: currentSwitchValue },
+        ];
+
+        console.log(xyz);
+
+        const zyx = [];
+
+        xyz.forEach((e) => {
+            zyx.push(e.name);
+        });
+
+        console.log(zyx);
+
+        setSwitches([
             ...blabla,
             { name: currentSwitchName, value: currentSwitchValue },
         ]);
@@ -45,7 +60,7 @@ const NotesFilterBox = ({ c }) => {
         <>
             <FormControl component='fieldset' className={classes.formControl}>
                 <FormGroup>
-                    {categories.map((category) => {
+                    {switches.map((category) => {
                         return (
                             <>
                                 <FormControlLabel
