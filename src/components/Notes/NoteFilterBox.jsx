@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import { makeStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
@@ -39,9 +40,9 @@ const NotesFilterBox = ({ setFilteredCategories }) => {
         setFilteredCategories(() => {
             const result = [];
 
-            switches.forEach((e) => {
-                if (e.value) {
-                    result.push(e.name);
+            switches.forEach((s) => {
+                if (s.value) {
+                    result.push(s.name);
                 }
             });
 
@@ -65,7 +66,7 @@ const NotesFilterBox = ({ setFilteredCategories }) => {
         <>
             <FormControl component='fieldset' className={classes.formControl}>
                 <FormGroup>
-                    {switches.map((category) => {
+                    {sortSwitchesByName(switches).map((category) => {
                         return (
                             <>
                                 <FormControlLabel
@@ -88,3 +89,20 @@ const NotesFilterBox = ({ setFilteredCategories }) => {
 };
 
 export default NotesFilterBox;
+
+const sortSwitchesByName = (switches) => {
+    function compare(a, b) {
+        const switchName1 = a.name.toUpperCase();
+        const switchName2 = b.name.toUpperCase();
+
+        let comparison = 0;
+        if (switchName1 > switchName2) {
+            comparison = 1;
+        } else if (switchName1 < switchName2) {
+            comparison = -1;
+        }
+        return comparison;
+    }
+
+    return switches.sort(compare);
+};
