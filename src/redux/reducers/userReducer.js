@@ -1,4 +1,4 @@
-const initState = null;
+const initState = "Kulcsar Rudolf";
 
 const userReducer = (state = initState, action) => {
     switch (action.type) {
