@@ -45,7 +45,9 @@ const NotesFilterBox = ({ categories, setCategories }) => {
         const zyx = [];
 
         xyz.forEach((e) => {
-            zyx.push(e.name);
+            if (e.value) {
+                zyx.push(e.name);
+            }
         });
 
         console.log(zyx);
@@ -54,6 +56,8 @@ const NotesFilterBox = ({ categories, setCategories }) => {
             ...blabla,
             { name: currentSwitchName, value: currentSwitchValue },
         ]);
+
+        setCategories(zyx);
     };
 
     return (

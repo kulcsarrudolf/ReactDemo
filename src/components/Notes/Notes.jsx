@@ -11,15 +11,17 @@ import { getNotesByUserName, getCategories } from "../../Services/notesService";
 const Notes = () => {
     const [notes, setNotes] = useState([]);
     const user = useSelector((state) => state.user);
-    const [category, setCategory] = useState(["work", "ideas"]);
+    const [category, setCategory] = useState([]);
 
     useEffect(() => {
         const fetchNotes = async () => {
             const allNotes = await getNotesByUserName(user);
             if (category) {
                 const filteredNotes = allNotes.filter((note) =>
-                    note.category.includes(category)
+                    category.includes(note.category)
                 );
+
+                console.log(filteredNotes);
 
                 setNotes(filteredNotes);
             } else {
@@ -37,13 +39,13 @@ const Notes = () => {
             </>
         );
     }
-
+    console.log(user);
     return (
         <>
             <>
                 <NotesFilterBox
                     categories={getCategories()}
-                    setCategory={setCategory}
+                    setCategories={setCategory}
                 />
             </>
 
