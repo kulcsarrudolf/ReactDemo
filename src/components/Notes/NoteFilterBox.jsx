@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+
+import { getCategories } from "../../Services/notesService";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -11,8 +13,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const NotesFilterBox = ({ categories, setCategories }) => {
+const NotesFilterBox = ({ setFilteredCategories }) => {
     const classes = useStyles();
+
+    const categories = getCategories();
 
     const [switches, setSwitches] = useState(() => {
         const initState = [];
@@ -20,44 +24,41 @@ const NotesFilterBox = ({ categories, setCategories }) => {
         categories.forEach((category) => {
             initState.push({
                 name: category,
-                value: false,
+                value: true,
             });
         });
 
         return initState;
     });
 
+    useEffect(() => {
+        setFilteredCategories(getCategories());
+    }, []); //TODO: fix this - why setFilteredCategories is requested as dependency?
+
+    useEffect(() => {
+        setFilteredCategories(() => {
+            const result = [];
+
+            switches.forEach((e) => {
+                if (e.value) {
+                    result.push(e.name);
+                }
+            });
+
+            return result;
+        });
+    }, [switches]);
+
     const handleChange = (event) => {
         const currentSwitchName = event.target.name;
         const currentSwitchValue = event.target.checked;
 
-        const blabla = switches.filter(
-            (category) => category.name !== currentSwitchName
-        );
-
-        const xyz = [
-            ...blabla,
-            { name: currentSwitchName, value: currentSwitchValue },
-        ];
-
-        console.log(xyz);
-
-        const zyx = [];
-
-        xyz.forEach((e) => {
-            if (e.value) {
-                zyx.push(e.name);
-            }
-        });
-
-        console.log(zyx);
-
         setSwitches([
-            ...blabla,
+            ...switches.filter(
+                (category) => category.name !== currentSwitchName
+            ),
             { name: currentSwitchName, value: currentSwitchValue },
         ]);
-
-        setCategories(zyx);
     };
 
     return (

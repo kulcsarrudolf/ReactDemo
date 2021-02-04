@@ -6,22 +6,20 @@ import Alert from "@material-ui/lab/Alert";
 
 import NotesFilterBox from "./NoteFilterBox";
 
-import { getNotesByUserName, getCategories } from "../../Services/notesService";
+import { getNotesByUserName } from "../../Services/notesService";
 
 const Notes = () => {
     const [notes, setNotes] = useState([]);
     const user = useSelector((state) => state.user);
-    const [category, setCategory] = useState([]);
+    const [filteredCategories, setFilteredCategories] = useState([]);
 
     useEffect(() => {
         const fetchNotes = async () => {
             const allNotes = await getNotesByUserName(user);
-            if (category) {
+            if (filteredCategories) {
                 const filteredNotes = allNotes.filter((note) =>
-                    category.includes(note.category)
+                    filteredCategories.includes(note.category)
                 );
-
-                console.log(filteredNotes);
 
                 setNotes(filteredNotes);
             } else {
@@ -30,7 +28,7 @@ const Notes = () => {
         };
 
         fetchNotes();
-    }, [user, category]);
+    }, [user, filteredCategories]);
 
     if (!user) {
         return (
@@ -39,15 +37,10 @@ const Notes = () => {
             </>
         );
     }
-    console.log(user);
+
     return (
         <>
-            <>
-                <NotesFilterBox
-                    categories={getCategories()}
-                    setCategories={setCategory}
-                />
-            </>
+            <NotesFilterBox setFilteredCategories={setFilteredCategories} />
 
             {notes.map((note) => {
                 return (
