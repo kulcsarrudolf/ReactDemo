@@ -18,6 +18,8 @@ export const getNotesByUserName = (userName) => {
 
     const userNotes = getNotes().filter((note) => note.author === userName);
 
+    sortNotes(userNotes);
+
     return userNotes;
 };
 
@@ -27,3 +29,14 @@ export const getCategories = () => {
 
     return Array.from(categories);
 };
+
+export const sortNotes = (notesList) => {
+
+    notesList.sort(function (a, b) {
+        if (a.date > b.date) return -1;
+        if (a.date < b.date) return 1;
+        return 0;
+      });
+
+    return notesList;
+}
