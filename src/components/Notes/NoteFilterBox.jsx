@@ -65,7 +65,7 @@ const NotesFilterBox = ({ setFilteredCategories }) => {
     return (
         <>
             <FormControl component='fieldset' className={classes.formControl}>
-                <FormGroup>
+                <FormGroup aria-label='position' row>
                     {sortSwitchesByName(switches).map((category) => {
                         return (
                             <>
