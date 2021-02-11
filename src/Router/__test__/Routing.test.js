@@ -4,28 +4,34 @@ import { render, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "../../redux/store";
+import App from "../../components/App";
 
 afterEach(cleanup);
 
 const TestRouter = ({ path }) => {
-  const history = createMemoryHistory();
+    const history = createMemoryHistory();
 
-  history.push(path);
-  return (
-    <Router history={history}>
-      <Main />
-    </Router>
-  );
+    history.push(path);
+    return (
+        <Provider store={store}>
+            <Router history={history}>
+                <App />
+            </Router>
+        </Provider>
+    );
 };
 
-test("test", () => {
-  const { getByText } = render(<TestRouter path="/" />);
+test("Home page", () => {
+    const { getByText } = render(<TestRouter path='/' />);
 
-  getByText(/Home/i);
+    getByText(/A simple project created with React./i);
 });
 
-test("test2", () => {
-  const { getAllByText } = render(<TestRouter path="/random-note" />);
+test("User page", () => {
+    const { getAllByText } = render(<TestRouter path='/user' />);
 
-  getAllByText(/Random Note/i);
+    getAllByText(/The current user is:/i);
+    getAllByText(/Kulcsar Rudolf/i);
 });

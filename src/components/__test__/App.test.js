@@ -6,13 +6,17 @@ import { Router } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 
 import App from "../App";
+import { Provider } from "react-redux";
+import store from "../../redux/store";
 
 test("Home rendering", () => {
     const history = createMemoryHistory();
     render(
-        <Router history={history}>
-            <App />
-        </Router>
+        <Provider store={store}>
+            <Router history={history}>
+                <App />
+            </Router>
+        </Provider>
     );
     // verify page content for expected route
     // often you'd use a data-testid or role query, but this is also possible
