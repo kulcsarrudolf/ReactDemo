@@ -1,14 +1,26 @@
 import { Fragment, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { Typography, Paper } from "@material-ui/core";
+import { Typography, Paper, Grid, makeStyles } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 
 import NotesFilterBox from "./NoteFilterBox";
 
 import { getNotesByUserName } from "../../Services/notesService";
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: "center",
+        color: theme.palette.text.secondary,
+    },
+}));
+
 const Notes = () => {
+    const classes = useStyles();
     const [notes, setNotes] = useState([]);
     const user = useSelector((state) => state.user);
     const [filteredCategories, setFilteredCategories] = useState([]);
@@ -39,39 +51,58 @@ const Notes = () => {
     }
 
     return (
-        <>
-            <NotesFilterBox setFilteredCategories={setFilteredCategories} />
+        // <div className={classes.root}>
+        <Grid container spacing={1}>
+            <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                    <NotesFilterBox
+                        setFilteredCategories={setFilteredCategories}
+                    />
+                </Paper>
+            </Grid>
+            <Grid item xs={4}>
+                {/* <Paper className={classes.paper}> */}
+                {notes.map((note) => {
+                    return (
+                        <Fragment key={note.id}>
+                            <Paper
+                                elevation={3}
+                                style={{
+                                    padding: "0.4rem 0.75rem",
+                                    margin: "0.25rem",
+                                }}
+                            >
+                                <Typography
+                                    variant='h5'
+                                    component='h2'
+                                    gutterBottom
+                                >
+                                    {note.title}
+                                </Typography>
+                                <Typography
+                                    variant='caption'
+                                    display='block'
+                                    gutterBottom
+                                >
+                                    Author: {note.author} | Category:{" "}
+                                    {note.category} | Created at: {note.date}
+                                </Typography>
+                            </Paper>
+                        </Fragment>
+                    );
+                })}
+                {/* </Paper> */}
+            </Grid>
+            <Grid item xs={8}>
+                <Paper className={classes.paper}></Paper>
+            </Grid>
+        </Grid>
+        // </div>
 
-            {notes.map((note) => {
-                return (
-                    <Fragment key={note.id}>
-                        <Paper
-                            elevation={3}
-                            style={{
-                                padding: "0.5rem 1rem",
-                                margin: "0.75rem",
-                            }}
-                        >
-                            <Typography
-                                variant='h5'
-                                component='h2'
-                                gutterBottom
-                            >
-                                {note.title}
-                            </Typography>
-                            <Typography
-                                variant='caption'
-                                display='block'
-                                gutterBottom
-                            >
-                                Author: {note.author} | Category:{" "}
-                                {note.category} | Created at: {note.date}
-                            </Typography>
-                        </Paper>
-                    </Fragment>
-                );
-            })}
-        </>
+        // <>
+        //     <NotesFilterBox setFilteredCategories={setFilteredCategories} />
+
+        // </>
     );
 };
 
