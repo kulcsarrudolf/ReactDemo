@@ -5,15 +5,13 @@ import React from "react";
 import { Router } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
 
-import Main from "../Main";
-import Navbar from "../Navbar";
+import App from "../App";
 
 test("Home rendering", () => {
     const history = createMemoryHistory();
     render(
         <Router history={history}>
-            <Navbar />
-            <Main />
+            <App />
         </Router>
     );
     // verify page content for expected route

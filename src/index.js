@@ -4,22 +4,18 @@ import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 
 //REDUX SETUP
-import { createStore, applyMiddleware, compose } from "redux";
-import rootReducer from "./redux/reducers";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
+import store from "./redux/store";
 
-const composeEnchancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(
-    rootReducer,
-    composeEnchancer(applyMiddleware(thunk))
-);
+//ROUTER
+import { HashRouter } from "react-router-dom";
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <App />
+            <HashRouter>
+                <App />
+            </HashRouter>
         </Provider>
     </React.StrictMode>,
     document.getElementById("root")
