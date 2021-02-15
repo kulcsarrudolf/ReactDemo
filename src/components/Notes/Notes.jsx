@@ -5,6 +5,7 @@ import { Typography, Paper, Grid, makeStyles } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 
 import NotesFilterBox from "./NoteFilterBox";
+import Note from "./Note";
 
 import { getNotesByUserName } from "../../Services/notesService";
 
@@ -17,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "center",
         color: theme.palette.text.secondary,
     },
+    note: {
+        padding: theme.spacing(2),
+    },
 }));
 
 const Notes = () => {
@@ -24,6 +28,7 @@ const Notes = () => {
     const [notes, setNotes] = useState([]);
     const user = useSelector((state) => state.user);
     const [filteredCategories, setFilteredCategories] = useState([]);
+    const [selectedNote, setSelectedNote] = useState(null);
 
     useEffect(() => {
         const fetchNotes = async () => {
@@ -51,7 +56,6 @@ const Notes = () => {
     }
 
     return (
-        // <div className={classes.root}>
         <Grid container spacing={1}>
             <Grid item xs={12}>
                 <Paper className={classes.paper}>
@@ -61,11 +65,13 @@ const Notes = () => {
                 </Paper>
             </Grid>
             <Grid item xs={4}>
-                {/* <Paper className={classes.paper}> */}
                 {notes.map((note) => {
                     return (
                         <Fragment key={note.id}>
                             <Paper
+                                onClick={() => {
+                                    setSelectedNote(note);
+                                }}
                                 elevation={3}
                                 style={{
                                     padding: "0.4rem 0.75rem",
@@ -91,18 +97,13 @@ const Notes = () => {
                         </Fragment>
                     );
                 })}
-                {/* </Paper> */}
             </Grid>
             <Grid item xs={8}>
-                <Paper className={classes.paper}></Paper>
+                <Paper className={classes.note}>
+                    <Note note={selectedNote} />
+                </Paper>
             </Grid>
         </Grid>
-        // </div>
-
-        // <>
-        //     <NotesFilterBox setFilteredCategories={setFilteredCategories} />
-
-        // </>
     );
 };
 
