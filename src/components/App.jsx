@@ -1,15 +1,18 @@
 import Navbar from "./Navbar";
 import Main from "./Main";
 import { Container, CssBaseline } from "@material-ui/core";
+import Theme from "./Theme";
 
 function App() {
     return (
         <>
-            <CssBaseline />
-            <Container>
-                <Navbar />
-                <Main />
-            </Container>
+            <Theme>
+                <CssBaseline />
+                <Container>
+                    <Navbar />
+                    <Main />
+                </Container>
+            </Theme>
         </>
     );
 }
