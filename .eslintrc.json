@@ -1,0 +1,13 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-wrap-multilines": [
+      "error",
+      { "declaration": false, "assignment": false }
+    ],
+
+    "no-unused-vars": "warn"
+  }
+}
