@@ -1,16 +1,16 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-import SelectUser from "./SelectUser";
-import CurrentUser from "./CurrentUser";
+import SelectUser from './SelectUser';
+import CurrentUser from './CurrentUser';
 
 const User = () => {
-    const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user);
 
-    if (user) {
-        return <CurrentUser />;
-    }
+  if (user) {
+    return <CurrentUser />;
+  }
 
-    return <SelectUser />;
+  return <SelectUser />;
 };
 
 export default User;

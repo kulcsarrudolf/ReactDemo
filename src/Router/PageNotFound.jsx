@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from '@material-ui/core';
 
 const PageNotFound = () => {
   return (
@@ -8,7 +8,7 @@ const PageNotFound = () => {
         direction="column"
         alignItems="center"
         justify="center"
-        style={{ height: "calc(100vh - 5.5rem" }}
+        style={{ height: 'calc(100vh - 5.5rem' }}
       >
         <Typography variant="h1">404</Typography>
         <Typography variant="h2">Page not found</Typography>
