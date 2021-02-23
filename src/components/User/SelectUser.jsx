@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../redux/actions/userAction';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -13,8 +12,10 @@ import {
   FormControl,
   Select,
   Grid,
+  Paper,
 } from '@material-ui/core';
 
+import { setUser } from '../../redux/actions/userAction';
 import { getAllUsers } from '../../Services/userService';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
   },
   setUserButton: {
     minWidth: 300,
+  },
+  home: {
+    padding: '1rem',
   },
 }));
 
@@ -56,34 +60,41 @@ const SelectUser = () => {
   if (users.length > 0) {
     return (
       <>
-        <Grid container direction="column" alignItems="center" justify="center">
-          <FormControl variant="outlined" className={classes.userSelector}>
-            <InputLabel>Select a user</InputLabel>
-            <Select
-              value={selectedUser}
-              onChange={handleUserSelect}
-              label="User name"
-            >
-              {users.map((user) => (
-                <MenuItem key={uuidv4()} value={user}>
-                  {user}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+        <Paper className={classes.home}>
+          <Grid
+            container
+            direction="column"
+            alignItems="center"
+            justify="center"
+          >
+            <FormControl variant="outlined" className={classes.userSelector}>
+              <InputLabel>Select a user</InputLabel>
+              <Select
+                value={selectedUser}
+                onChange={handleUserSelect}
+                label="User name"
+              >
+                {users.map((user) => (
+                  <MenuItem key={uuidv4()} value={user}>
+                    {user}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
-          {isUserSelected && (
-            <Button
-              variant="contained"
-              size="large"
-              color="primary"
-              onClick={handleSetUserButtonClick}
-              className={classes.setUserButton}
-            >
-              Set User
-            </Button>
-          )}
-        </Grid>
+            {isUserSelected && (
+              <Button
+                variant="contained"
+                size="large"
+                color="primary"
+                onClick={handleSetUserButtonClick}
+                className={classes.setUserButton}
+              >
+                Set User
+              </Button>
+            )}
+          </Grid>
+        </Paper>
       </>
     );
   }
