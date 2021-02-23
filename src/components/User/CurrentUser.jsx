@@ -2,9 +2,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Typography, Grid, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { resetUser } from './../../redux/actions/userAction';
+import { resetUser } from '../../redux/actions/userAction';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   changeUserButton: {
     minWidth: 300,
     margin: 10,
@@ -25,7 +25,10 @@ const CurrentUser = () => {
     <>
       <Grid container direction="column" alignItems="center" justify="center">
         <Typography>
-          The current user is: <b>{user}</b>
+          The current user is:
+          <Typography display="inline" component="span">
+            {user}
+          </Typography>
         </Typography>
 
         <Button

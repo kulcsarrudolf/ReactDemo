@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 
 const composeEnchancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-s;
+
 const store = createStore(
   rootReducer,
   composeEnchancer(applyMiddleware(thunk))
