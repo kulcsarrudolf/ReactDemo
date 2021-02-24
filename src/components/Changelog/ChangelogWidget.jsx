@@ -1,24 +1,49 @@
 import { useState, useEffect } from 'react';
 
-import { Typography } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 import { changelogData } from './ChangelogData';
 
-import { countNumberOfChangesLastWeek } from './ChangelogUtils';
+import {
+  countNumberOfChangesLastWeek,
+  countNumberOfChangesLastMonth,
+} from './ChangelogUtils';
 
 const ChangelogWidget = () => {
-  const [numberOfChanges, setNumberOfChanges] = useState(null);
+  const [numberOfChangesLastWeek, setNumberOfChangesLastWeek] = useState(null);
+  const [numberOfChangesLastMonth, setNumberOfChangesLastMonth] = useState(
+    null
+  );
 
   useEffect(() => {
-    setNumberOfChanges(countNumberOfChangesLastWeek(changelogData));
+    setNumberOfChangesLastWeek(countNumberOfChangesLastWeek(changelogData));
+    setNumberOfChangesLastMonth(countNumberOfChangesLastMonth(changelogData));
   }, []);
 
   return (
     <>
-      <Typography>
-        Number of changes last week:
-        {numberOfChanges}
-      </Typography>
+      <Alert
+        severity="info"
+        action={
+          <Button color="inherit" size="small">
+            GO TO CHANGELOG
+          </Button>
+        }
+      >
+        <AlertTitle>Changelog</AlertTitle>
+        <>
+          <Typography>
+            Number of changes last week:
+            {` ${numberOfChangesLastWeek}`}
+          </Typography>
+
+          <Typography>
+            Number of changes in the last 30 days:
+            {` ${numberOfChangesLastMonth}`}
+          </Typography>
+        </>
+      </Alert>
     </>
   );
 };

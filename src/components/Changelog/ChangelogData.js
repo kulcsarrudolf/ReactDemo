@@ -3,6 +3,18 @@ export const changelogData = [
     title: 'Test Feature 11',
     summary: 'This is just a test description for test feature',
     tags: ['Removed'],
+    date: '2021-02-23',
+  },
+  {
+    title: 'Test Feature 11',
+    summary: 'This is just a test description for test feature',
+    tags: ['Removed'],
+    date: '2021-02-22',
+  },
+  {
+    title: 'Test Feature 11',
+    summary: 'This is just a test description for test feature',
+    tags: ['Removed'],
     date: '2021-02-21',
   },
   {
