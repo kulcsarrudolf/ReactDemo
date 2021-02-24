@@ -9,6 +9,7 @@
     ],
 
     "no-unused-vars": "warn",
-    "react/jsx-props-no-spreading":"warn"
+    "react/jsx-props-no-spreading":"warn",
+    "import/prefer-default-export":"off"
   }
 }
