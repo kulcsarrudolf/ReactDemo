@@ -11,7 +11,8 @@ const theme = createMuiTheme({
   },
 });
 
-export default function Theme(props) {
-  let { children } = props;
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
-}
+const Theme = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
+
+export default Theme;

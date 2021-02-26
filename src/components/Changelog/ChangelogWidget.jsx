@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { Typography, Button } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
+import NewIcon from '@material-ui/icons/NewReleases';
+
 import { changelogData } from './ChangelogData';
 
 import {
@@ -37,7 +39,19 @@ const ChangelogWidget = () => {
             Number of changes last week:
             {` ${numberOfChangesLastWeek}`}
           </Typography>
-
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
+          >
+            <NewIcon />
+            <Typography>
+              Number of changes last week:
+              {` ${numberOfChangesLastWeek}`}
+            </Typography>
+          </div>
           <Typography>
             Number of changes in the last 30 days:
             {` ${numberOfChangesLastMonth}`}
