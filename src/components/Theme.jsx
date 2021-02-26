@@ -1,12 +1,15 @@
+import React from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { purple, amber } from '@material-ui/core/colors';
+import { indigo } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
-    primary: purple,
-    secondary: amber,
+    primary: {
+      main: '#4267B2',
+    },
+    secondary: indigo,
     background: {
-      default: '#323230',
+      default: '#E9EBEE',
     },
   },
 });
