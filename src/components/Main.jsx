@@ -1,11 +1,12 @@
 import { Suspense } from 'react';
-import Routing from '../Router/Routing';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-const useStyles = makeStyles((theme) => ({
+import Routing from '../Router/Routing';
+
+const useStyles = makeStyles(() => ({
   root: {
     marginTop: '4.5rem',
   },
