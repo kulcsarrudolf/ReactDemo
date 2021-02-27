@@ -1,13 +1,14 @@
 import { Fragment, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { Typography, Paper, Grid, makeStyles } from '@material-ui/core';
+import { Paper, Grid, makeStyles } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
 import NotesFilterBox from './NoteFilterBox';
 import Note from './Note';
 
 import { getNotesByUserName } from '../../Services/notesService';
+import NoteSelector from './NoteSelector';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,27 +64,7 @@ const Notes = () => {
         </Paper>
       </Grid>
       <Grid item xs={4}>
-        {notes.map((note) => (
-          <Fragment key={note.id}>
-            <Paper
-              onClick={() => {
-                setSelectedNote(note);
-              }}
-              elevation={3}
-              style={{
-                padding: '0.4rem 0.75rem',
-                margin: '0.25rem',
-              }}
-            >
-              <Typography variant="h5" component="h2" gutterBottom>
-                {note.title}
-              </Typography>
-              <Typography variant="caption" display="block" gutterBottom>
-                {`Author: ${note.author} | Category: ${note.category} | Created at: ${note.date}`}
-              </Typography>
-            </Paper>
-          </Fragment>
-        ))}
+        <NoteSelector notes={notes} setSelectedNote={setSelectedNote} />
       </Grid>
       <Grid item xs={8}>
         <Paper className={classes.note}>
