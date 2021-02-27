@@ -2,17 +2,18 @@ import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const ProtectedRoute = ({
-  component: Component,
+  exact,
+  path,
   enabled,
+  component: Component,
   location,
-  ...rest
 }) => (
   <Route
-    {...rest}
-    render={(props) => {
-      console.log(location);
+    exact={exact}
+    path={path}
+    render={() => {
       if (enabled) {
-        return <Component {...rest} {...props} />;
+        return <Component />;
       }
       return (
         <Redirect

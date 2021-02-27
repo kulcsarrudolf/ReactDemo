@@ -11,9 +11,9 @@ const Routing = () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route exact path="/home" component={Home} />
+    <ProtectedRoute exact path="/notes" enabled component={Notes} />
     <Route exact path="/user" component={User} />
     <Route exact path="/changelog" component={Changelog} />
-    <ProtectedRoute exact path="/notes" enabled component={Notes} />
     <Route path="*" component={PageNotFound} />
   </Switch>
 );

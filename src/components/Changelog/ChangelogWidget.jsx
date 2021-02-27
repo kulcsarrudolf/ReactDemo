@@ -54,7 +54,7 @@ const ChangelogWidget = () => {
       <Alert style={{ marginBottom: '1rem' }} severity="info">
         {`${changelogInfo.numberOfChanges} updates ${changelogInfo.interval}. `}
         More details are available on
-        <Link to="/notes" className={classes.link}>
+        <Link to="/changelog" className={classes.link}>
           {` Changelog `}
         </Link>
         page.
