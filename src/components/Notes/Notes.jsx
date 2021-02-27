@@ -63,30 +63,27 @@ const Notes = () => {
         </Paper>
       </Grid>
       <Grid item xs={4}>
-        {notes.map((note) => {
-          return (
-            <Fragment key={note.id}>
-              <Paper
-                onClick={() => {
-                  setSelectedNote(note);
-                }}
-                elevation={3}
-                style={{
-                  padding: '0.4rem 0.75rem',
-                  margin: '0.25rem',
-                }}
-              >
-                <Typography variant="h5" component="h2" gutterBottom>
-                  {note.title}
-                </Typography>
-                <Typography variant="caption" display="block" gutterBottom>
-                  Author: {note.author} | Category: {note.category} | Created
-                  at: {note.date}
-                </Typography>
-              </Paper>
-            </Fragment>
-          );
-        })}
+        {notes.map((note) => (
+          <Fragment key={note.id}>
+            <Paper
+              onClick={() => {
+                setSelectedNote(note);
+              }}
+              elevation={3}
+              style={{
+                padding: '0.4rem 0.75rem',
+                margin: '0.25rem',
+              }}
+            >
+              <Typography variant="h5" component="h2" gutterBottom>
+                {note.title}
+              </Typography>
+              <Typography variant="caption" display="block" gutterBottom>
+                {`Author: ${note.author} | Category: ${note.category} | Created at: ${note.date}`}
+              </Typography>
+            </Paper>
+          </Fragment>
+        ))}
       </Grid>
       <Grid item xs={8}>
         <Paper className={classes.note}>

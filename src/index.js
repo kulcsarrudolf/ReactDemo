@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
-import reportWebVitals from './reportWebVitals';
 
-//REDUX SETUP
+// ROUTER
+import { HashRouter } from 'react-router-dom';
+
+// REDUX SETUP
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
-//ROUTER
-import { HashRouter } from 'react-router-dom';
+import App from './components/App';
+
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>

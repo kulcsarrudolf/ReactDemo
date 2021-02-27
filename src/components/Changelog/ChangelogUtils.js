@@ -11,19 +11,6 @@ const numberOfDaysBetweenDates = (startDate, endDate) => {
   return dayCount;
 };
 
-const getNumberOfWeek = (date = new Date()) => {
-  const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
-  const pastDaysOfYear = (date - firstDayOfYear) / 86400000;
-  return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
-};
-
-const isDateInThisWeek = (date) => {
-  if (getNumberOfWeek() === getNumberOfWeek(date)) {
-    return true;
-  }
-  return false;
-};
-
 const isDateFromLastSevenDays = (date) => {
   const today = new Date();
   if (numberOfDaysBetweenDates(date, today) <= 7) {
