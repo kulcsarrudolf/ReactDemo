@@ -7,6 +7,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import { getCategories } from '../../Services/notesService';
+import { sortSwitchesByName } from './notesUtils';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -34,7 +35,7 @@ const NotesFilterBox = ({ setFilteredCategories }) => {
 
   useEffect(() => {
     setFilteredCategories(getCategories());
-  }, []); //TODO: fix this - why setFilteredCategories is requested as dependency?
+  }, []); // TODO: fix this - why setFilteredCategories is requested as dependency?
 
   useEffect(() => {
     setFilteredCategories(() => {
@@ -64,22 +65,20 @@ const NotesFilterBox = ({ setFilteredCategories }) => {
     <>
       <FormControl component="fieldset" className={classes.formControl}>
         <FormGroup aria-label="position" row>
-          {sortSwitchesByName(switches).map((category) => {
-            return (
-              <>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={category.value}
-                      onChange={handleChange}
-                      name={category.name}
-                    />
-                  }
-                  label={category.name}
-                />
-              </>
-            );
-          })}
+          {sortSwitchesByName(switches).map((category) => (
+            <>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={category.value}
+                    onChange={handleChange}
+                    name={category.name}
+                  />
+                }
+                label={category.name}
+              />
+            </>
+          ))}
         </FormGroup>
       </FormControl>
     </>
@@ -87,20 +86,3 @@ const NotesFilterBox = ({ setFilteredCategories }) => {
 };
 
 export default NotesFilterBox;
-
-const sortSwitchesByName = (switches) => {
-  function compare(a, b) {
-    const switchName1 = a.name.toUpperCase();
-    const switchName2 = b.name.toUpperCase();
-
-    let comparison = 0;
-    if (switchName1 > switchName2) {
-      comparison = 1;
-    } else if (switchName1 < switchName2) {
-      comparison = -1;
-    }
-    return comparison;
-  }
-
-  return switches.sort(compare);
-};

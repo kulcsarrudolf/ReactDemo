@@ -13,9 +13,9 @@ function Home() {
 
   return (
     <>
+      <ChangelogWidget />
       <Paper className={classes.home}>
         <Typography>A simple project created with React.</Typography>
-        <ChangelogWidget />
       </Paper>
     </>
   );

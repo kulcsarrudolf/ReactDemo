@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import { Typography, Button } from '@material-ui/core';
-import { Alert, AlertTitle } from '@material-ui/lab';
+import { makeStyles } from '@material-ui/core/styles';
 
-import NewIcon from '@material-ui/icons/NewReleases';
+import { Alert } from '@material-ui/lab';
 
 import { changelogData } from './ChangelogData';
 
@@ -12,51 +12,52 @@ import {
   countNumberOfChangesLastMonth,
 } from './ChangelogUtils';
 
+const useStyles = makeStyles((theme) => ({
+  link: {
+    textDecoration: 'none',
+    fontWeight: 'bold',
+    color: theme.palette.primary,
+  },
+}));
+
 const ChangelogWidget = () => {
-  const [numberOfChangesLastWeek, setNumberOfChangesLastWeek] = useState(null);
-  const [numberOfChangesLastMonth, setNumberOfChangesLastMonth] = useState(
-    null
-  );
+  const classes = useStyles();
+  const [changelogInfo, setChangelogInfo] = useState(null);
 
   useEffect(() => {
-    setNumberOfChangesLastWeek(countNumberOfChangesLastWeek(changelogData));
-    setNumberOfChangesLastMonth(countNumberOfChangesLastMonth(changelogData));
+    const numberOfChangesLastWeek = countNumberOfChangesLastWeek(changelogData);
+    const numberOfChangesLastMonth = countNumberOfChangesLastMonth(
+      changelogData
+    );
+
+    if (numberOfChangesLastWeek > 0) {
+      setChangelogInfo({
+        numberOfChanges: numberOfChangesLastWeek,
+        interval: 'this week',
+      });
+    } else if (numberOfChangesLastMonth > 0) {
+      setChangelogInfo({
+        numberOfChanges: numberOfChangesLastMonth,
+        interval: 'this month',
+      });
+    } else {
+      setChangelogInfo(null);
+    }
   }, []);
+
+  if (changelogInfo === null) {
+    return null;
+  }
 
   return (
     <>
-      <Alert
-        severity="info"
-        action={
-          <Button color="inherit" size="small">
-            GO TO CHANGELOG
-          </Button>
-        }
-      >
-        <AlertTitle>Changelog</AlertTitle>
-        <>
-          <Typography>
-            Number of changes last week:
-            {` ${numberOfChangesLastWeek}`}
-          </Typography>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-            }}
-          >
-            <NewIcon />
-            <Typography>
-              Number of changes last week:
-              {` ${numberOfChangesLastWeek}`}
-            </Typography>
-          </div>
-          <Typography>
-            Number of changes in the last 30 days:
-            {` ${numberOfChangesLastMonth}`}
-          </Typography>
-        </>
+      <Alert style={{ marginBottom: '1rem' }} severity="info">
+        {`${changelogInfo.numberOfChanges} updates ${changelogInfo.interval}. `}
+        More details are available on
+        <Link to="/notes" className={classes.link}>
+          {` Changelog `}
+        </Link>
+        page.
       </Alert>
     </>
   );
