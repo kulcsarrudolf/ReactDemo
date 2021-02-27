@@ -2,6 +2,8 @@
   "name": "react-demo",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://kulcsarrudolf.github.io/ReactDemo",
+
   "dependencies": {
     "@material-ui/core": "^4.11.1",
     "@material-ui/icons": "^4.9.1",
@@ -30,7 +32,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write \"**/*.+(js|jsx|md|ts|css|sass|less|graphql|yml|yaml|scss|json|vue)\"",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -61,6 +65,7 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "gh-pages": "^3.1.0",
     "prettier": "^2.2.1"
   }
 }
