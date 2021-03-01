@@ -6,8 +6,7 @@ const Note = ({ note }) => {
       <>
         <Typography variant="h3">{note.title}</Typography>
         <Typography variant="subtitle2" gutterBottom>
-          Author:
-          {note.author}
+          {`Author: ${note.author} | Category: ${note.category} | Created at: ${note.date}`}
         </Typography>
         <Typography variant="body1">{note.note}</Typography>
       </>
