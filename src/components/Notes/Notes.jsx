@@ -40,8 +40,10 @@ const Notes = () => {
         );
 
         setNotes(filteredNotes);
+        setSelectedNote(filteredNotes[0]);
       } else {
         setNotes(allNotes);
+        setSelectedNote(allNotes[0]);
       }
     };
 

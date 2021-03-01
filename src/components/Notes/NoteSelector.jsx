@@ -1,5 +1,6 @@
 import { useState, Fragment } from 'react';
-import { Typography, Paper, Button } from '@material-ui/core';
+import { Typography, Paper, Grid } from '@material-ui/core';
+import { Pagination } from '@material-ui/lab';
 
 const NoteSelector = ({ notes, setSelectedNote }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,21 +24,25 @@ const NoteSelector = ({ notes, setSelectedNote }) => {
               margin: '0.25rem',
             }}
           >
-            <Typography variant="h5" component="h2" gutterBottom>
+            <Typography variant="h6" component="h2" gutterBottom>
               {note.title}
-            </Typography>
-            <Typography variant="caption" display="block" gutterBottom>
-              {`Author: ${note.author} | Category: ${note.category} | Created at: ${note.date}`}
             </Typography>
           </Paper>
         </Fragment>
       ))}
-      <NotesPaginator
-        postsPerPage={postsPerPage}
-        totalPosts={notes.length}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        style={{ marginTop: '1rem' }}
+      >
+        <NotesPaginator
+          postsPerPage={postsPerPage}
+          totalPosts={notes.length}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      </Grid>
     </>
   );
 };
@@ -50,33 +55,20 @@ const NotesPaginator = ({
 }) => {
   const totalNoOfPages = Math.ceil(totalPosts / postsPerPage);
 
-  if (totalNoOfPages === 1) {
+  if (totalNoOfPages < 2) {
     return null;
   }
 
   return (
     <>
-      <Typography>{`Page ${currentPage} of ${totalNoOfPages}`}</Typography>
-
-      {currentPage > 1 && (
-        <Button
-          onClick={() => {
-            setCurrentPage((prev) => prev - 1);
-          }}
-        >
-          Previous Page
-        </Button>
-      )}
-
-      {currentPage < totalNoOfPages && (
-        <Button
-          onClick={() => {
-            setCurrentPage((prev) => prev + 1);
-          }}
-        >
-          Next Page
-        </Button>
-      )}
+      <Pagination
+        count={totalNoOfPages}
+        page={currentPage}
+        onChange={(e, page) => {
+          setCurrentPage(page);
+        }}
+        shape="rounded"
+      />
     </>
   );
 };
