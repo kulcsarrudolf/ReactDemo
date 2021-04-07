@@ -2,10 +2,10 @@ import { Route, Switch } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 
 import Home from '../components/Home';
-import Notes from '../components/Notes/Notes';
+import Notes from '../components/notes/Notes';
 import PageNotFound from './PageNotFound';
-import User from '../components/User/User';
-import Changelog from '../components/Changelog/Changelog';
+import User from '../components/user/User';
+import Changelog from '../components/changelog';
 
 const Routing = () => (
   <Switch>
